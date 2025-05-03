@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctlegiint5lk2"]
+
+[ext_resource type="Script" uid="uid://dne1x00p3ljlf" path="res://scripts/game_manager.gd" id="1_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://buogxl045hegy" path="res://scenes/wall.tscn" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dl3otp8ysxkix" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://cykbfkbx02w2k" path="res://scenes/ball.tscn" id="2_yqjtg"]
+
+[node name="Game" type="Node"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_lbhrr")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="TopWall" parent="Walls" instance=ExtResource("1_lnu2h")]
+position = Vector2(674, 163)
+
+[node name="LeftWall" parent="Walls" instance=ExtResource("1_lnu2h")]
+position = Vector2(281, 6)
+rotation = 1.5708
+
+[node name="RightWall" parent="Walls" instance=ExtResource("1_lnu2h")]
+position = Vector2(867, 0)
+rotation = 1.5708
+
+[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(576, 470)
+
+[node name="Ball" parent="." instance=ExtResource("2_yqjtg")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 330)
+zoom = Vector2(2, 2)
