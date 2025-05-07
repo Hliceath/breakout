@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 
-const MAX_SPEED: float = 1.9
+const MAX_SPEED: float = 1.5
 var direction: Vector2
 @onready var center: Vector2 = get_viewport().get_camera_2d().get_screen_center_position()
 @onready var game_manager: Node = %GameManager
+@onready var timer: Timer = $Timer
 
 func _ready() -> void:
 	spawn()
@@ -29,4 +30,8 @@ func _physics_process(delta: float) -> void:
 
 func spawn() -> void:
 	position = center
+	velocity = Vector2(0, 0)
+	timer.start()
+
+func _on_timer_timeout() -> void:
 	velocity = Vector2(0, 200)
