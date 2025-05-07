@@ -7,6 +7,8 @@ var lives: int = 3
 @onready var ball: CharacterBody2D = $"../Ball"
 @onready var score_label: Label = $"../Control/CanvasLayer/HBoxContainer/ScoreLabel"
 @onready var lives_label: Label = $"../Control/CanvasLayer/HBoxContainer/LivesLabel"
+@onready var try_again_button: Button = $"../Control/CanvasLayer/HBoxContainer2/TryAgainButton"
+@onready var player: CharacterBody2D = $"../Player"
 
 func _ready() -> void:
 	update_score_ui()
@@ -18,7 +20,9 @@ func reset_ball() -> void:
 
 	if lives == 0:
 		ball.queue_free()
+		try_again_button.visible = true
 	else:
+		player.reset_player_position()
 		ball.spawn()
 
 func update_score() -> void:
@@ -33,3 +37,7 @@ func update_score_ui() -> void:
 	
 func update_score_lives() -> void:
 	lives_label.text = "Lives x" + str(lives)
+
+
+func _on_try_again_button_pressed() -> void:
+	get_tree().reload_current_scene()
