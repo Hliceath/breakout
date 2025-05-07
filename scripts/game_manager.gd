@@ -1,14 +1,14 @@
 extends Node
 
 var score: int = 0
-var high_score: int = 0
 var lives: int = 3
+var score_multiplier: int = 1
 
 @onready var ball: CharacterBody2D = $"../Ball"
-@onready var score_label: Label = $"../Control/CanvasLayer/HBoxContainer/ScoreLabel"
-@onready var lives_label: Label = $"../Control/CanvasLayer/HBoxContainer/LivesLabel"
-@onready var try_again_button: Button = $"../Control/CanvasLayer/HBoxContainer2/TryAgainButton"
 @onready var player: CharacterBody2D = $"../Player"
+@onready var lives_label: Label = $"../Control/CanvasLayer/LivesContainer/LivesLabel"
+@onready var score_label: Label = $"../Control/CanvasLayer/ScoreContainer/ScoreLabel"
+@onready var try_again_button: Button = $"../Control/CanvasLayer/GameOverMenu/TryAgainButton"
 
 func _ready() -> void:
 	update_score_ui()
@@ -26,10 +26,7 @@ func reset_ball() -> void:
 		ball.spawn()
 
 func update_score() -> void:
-	score += 10
-	if score > high_score:
-		high_score = score
-	
+	score += 10 * score_multiplier
 	update_score_ui()
 	
 func update_score_ui() -> void:
@@ -37,7 +34,6 @@ func update_score_ui() -> void:
 	
 func update_score_lives() -> void:
 	lives_label.text = "Lives x" + str(lives)
-
 
 func _on_try_again_button_pressed() -> void:
 	get_tree().reload_current_scene()

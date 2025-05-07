@@ -570,18 +570,29 @@ scale = Vector2(1, 1.00986)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/CanvasLayer"]
-anchors_preset = 10
+[node name="LivesContainer" type="HBoxContainer" parent="Control/CanvasLayer"]
+offset_left = 16.0
+offset_right = 22.0
+offset_bottom = 34.0
+
+[node name="LivesLabel" type="Label" parent="Control/CanvasLayer/LivesContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="ScoreContainer" type="HBoxContainer" parent="Control/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-grow_horizontal = 2
+offset_left = -56.0
+offset_right = -16.0
+offset_bottom = 40.0
+grow_horizontal = 0
 
-[node name="LivesLabel" type="Label" parent="Control/CanvasLayer/HBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="Control/CanvasLayer/ScoreContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 
-[node name="ScoreLabel" type="Label" parent="Control/CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/CanvasLayer"]
+[node name="GameOverMenu" type="HBoxContainer" parent="Control/CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -590,9 +601,10 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TryAgainButton" type="Button" parent="Control/CanvasLayer/HBoxContainer2"]
+[node name="TryAgainButton" type="Button" parent="Control/CanvasLayer/GameOverMenu"]
 visible = false
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "Try again?"
 
-[connection signal="pressed" from="Control/CanvasLayer/HBoxContainer2/TryAgainButton" to="GameManager" method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="Control/CanvasLayer/GameOverMenu/TryAgainButton" to="GameManager" method="_on_try_again_button_pressed"]
